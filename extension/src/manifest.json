@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Webpage Parser",
+  "version": "1.0",
+  "description": "Parse webpage and print h1 header",
+  "host_permissions": ["*://*/*"],
+  "permissions": ["tabs", "cookies", "background", "identity", "activeTab", "storage", "scripting"],
+  "background": {
+    "service_worker": "worker_wrapper.js"
+  },
+  "action": {
+    "default_icon": "static/icon/icon_16.png",
+    "default_title": "GrabEX",
+    "default_popup": "static/popup.html"
+  },
+  "icons": {
+    "16": "static/icon/icon_16.png",
+    "48": "static/icon/icon_48.png",
+    "128": "static/icon/icon_128.png"
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "static/js/content.js"
+      ],
+      "run_at": "document_end",
+      "matches": ["<all_urls>"]
+    },
+    {
+      "run_at": "document_start",
+      "matches": ["<all_urls>"],
+      "js": ["static/js/inject.js"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
