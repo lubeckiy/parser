@@ -34,5 +34,15 @@
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["static/js/*"],
+      "matches": ["<all_urls>"]
+    },
+    {
+      "resources": [ "*.png"],
+      "matches": [ "<all_urls>" ]
+    }
+  ]
 }
