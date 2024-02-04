@@ -13,6 +13,21 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     filename: 'static/js/[name].js',
   },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /nodeModules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Grabli plugin popup page.',
